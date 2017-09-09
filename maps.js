@@ -82,6 +82,7 @@ function populateInfoWindow(marker, infowindow) {
               infowindow.open(map, marker);
               // Make sure the marker property is cleared if the infowindow is closed.
               infowindow.addListener('closeclick',function(){
+                marker.setAnimation(google.maps.Animation.DROP)
                 infowindow.setMarker = null;
               });
             }
@@ -94,6 +95,7 @@ function populateInfoWindow(marker, infowindow) {
               infowindow.open(map, marker);
               // Make sure the marker property is cleared if the infowindow is closed.
               infowindow.addListener('closeclick',function(){
+                marker.setAnimation(google.maps.Animation.DROP)
                 infowindow.setMarker = null;
               });
             }
