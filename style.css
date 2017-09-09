@@ -34,3 +34,26 @@
 #myUL li a:hover:not(.header) {
     background-color: #eee; /* Add a hover effect to all links, except for headers */
 }
+
+#map {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-color: grey;
+    float: right;
+
+}
+h3{
+    text-align: right;
+}
+.marker{display: block;}
+ul{
+    float: left;
+    list-style: none;
+}
+
+
+
+
+
+
