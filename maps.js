@@ -110,6 +110,7 @@ function populateInfoWindow(marker, infowindow) {
 
 $( document ).ready(function() {
     $('.listItem').click(function(){
+        markers.forEach(function(marker){marker.setAnimation(null)})
         var largeInfowindow = new google.maps.InfoWindow();
 
         for(var i = 0; i < markers.length; i++){
