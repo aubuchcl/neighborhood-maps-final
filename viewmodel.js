@@ -49,6 +49,7 @@ function AppViewModel(){
             self.locations().forEach(function(location){
                 console.log('made it')
                 location.visibility(true)
+                markers.forEach(function(marker){marker.setVisible(true)});
             });
             return self.locations();
         } else {
@@ -56,6 +57,8 @@ function AppViewModel(){
                 var string = location.title.toUpperCase();
                 var result = (string.search(filter) >= 0);
                 location.visibility(result)
+                markers[location.count].setVisible(result)
+                // self.markerVisibility(location, result);
                 return result;
             });
         }
