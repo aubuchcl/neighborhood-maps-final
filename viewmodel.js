@@ -38,16 +38,16 @@ function AppViewModel(){
     li = ul.getElementsByTagName('li');
 
     self.filterList = function(){
-        for(let i=0; i<self.locations().length; i++){
+        for(var i=0; i<self.locations().length; i++){
             if(self.locations()[i].title.toUpperCase().indexOf(self.searchResults()) > -1){
                 if(li[i] != undefined){
                     li[i].style.display = "";
-                };
+                }
             } else {
                 li[i].style.display = "none";
             }
         }
-    }
+    };
 
 }
 
@@ -55,8 +55,3 @@ function AppViewModel(){
 // Activate knockout.js
 var VM = new AppViewModel();
 ko.applyBindings(VM);
-
-
-
-
-
