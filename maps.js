@@ -58,8 +58,6 @@ function initMap() {
 // one infowindow which will open at the marker that is clicked, and populate based
 // on that markers position.
 function populateInfoWindow(marker, infowindow) {
-
-
     var query = marker.title,
         dt = 'jsonp',
         wikiBase = 'https://en.wikipedia.org/w/api.php',
@@ -102,8 +100,6 @@ function populateInfoWindow(marker, infowindow) {
         }
     });
 }
-
-// $.ajax("https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&list=&meta=&titles=Northstar_California&exchars=1200")
 
 
 $( document ).ready(function() {
