@@ -40,7 +40,7 @@
 			<div class="row">
 			    <ul id="myUL" class="col-sm-4" data-bind="foreach: locations">
 			      <li>
-			        <a href="#" data-bind="text: title" class="listItem"></a>
+			        <a href="#" data-bind="text: title, click: $root.eventClickWindow" class="listItem"></a>
 
 			      </li>
 			    </ul>
@@ -57,14 +57,14 @@
 		</div>
 
 
-		<script async defer
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4h4fzbz8cd08Skr-0UZCkGyqIYRZmwWY&callback=initMap">
-		</script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
 		<script src="maps.js">
 		</script>
 		<script src="viewmodel.js">
+		</script>
+		<script async
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4h4fzbz8cd08Skr-0UZCkGyqIYRZmwWY&callback=initMap">
 		</script>
 
 	</body>

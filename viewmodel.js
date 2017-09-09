@@ -49,7 +49,20 @@ function AppViewModel(){
         }
     };
 
-}
+    self.eventClickWindow = function() {
+        console.log("made it")
+        markers.forEach(function(marker){marker.setAnimation(null)})
+        var largeInfowindow = new google.maps.InfoWindow();
+
+        for(var i = 0; i < markers.length; i++){
+            if(this.title == markers[i].title){
+                populateInfoWindow(markers[i], largeInfowindow);
+            }
+        }
+
+    };
+
+};
 
 
 // Activate knockout.js

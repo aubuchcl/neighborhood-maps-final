@@ -91,7 +91,7 @@ function populateInfoWindow(marker, infowindow) {
               });
             }
         },
-        failure: function(response){
+        error: function(response){
             if(document.getElementById((marker.title.split(" ")[0]).toString()) === null){
               infowindow.marker = marker;
               marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -107,21 +107,3 @@ function populateInfoWindow(marker, infowindow) {
     });
 }
 
-
-$( document ).ready(function() {
-    $('.listItem').click(function(){
-        markers.forEach(function(marker){marker.setAnimation(null)})
-        var largeInfowindow = new google.maps.InfoWindow();
-
-        for(var i = 0; i < markers.length; i++){
-            if(this.innerHTML == markers[i].title){
-                populateInfoWindow(markers[i], largeInfowindow);
-            }
-        }
-
-
-    });
-
-
-
-});
