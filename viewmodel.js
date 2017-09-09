@@ -5,7 +5,7 @@ function Location(title, location){
     self.title = title;
     self.location = location;
 
-};
+}
 
 // create the apps viewmodel
 
@@ -15,10 +15,10 @@ function AppViewModel(){
     self.searchBar = ko.observable('');
 
     self.searchResults = ko.computed(function(){
-        var results = ""
+        var results = "";
         results += self.searchBar().toUpperCase();
-        return results
-    }, self);
+        return results;
+    },(self));
 
     self.capitalizeInput = function(){
         var currentVal = self.searchBar();
