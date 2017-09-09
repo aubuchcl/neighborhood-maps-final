@@ -1,7 +1,7 @@
 // constructor
-function Location(title, location){
+function Location(title, location, count){
     var self = this;
-
+    self.count = count;
     self.title = title;
     self.location = location;
     self.visibility = ko.observable(true);
@@ -32,28 +32,13 @@ function AppViewModel(){
     //locations initialized
     self.locations = ko.observableArray();
 
+    var i = 0
     locations.forEach(function(location){
-
-        self.locations.push(new Location(location.title, location.location));
+        console.log(i)
+        self.locations.push(new Location(location.title, location.location, i));
+        i += 1
 
     });
-
-
-    // ul = document.getElementById("myUL");
-    // li = ul.getElementsByTagName('li');
-
-    // self.filterList = function(){
-    //     for(var i=0; i<self.locations().length; i++){
-    //         if(self.locations()[i].title.toUpperCase().indexOf(self.searchResults()) > -1){
-    //             if(li[i] != undefined){
-    //                 // li[i].style.display = "";
-    //                 location[i].visible(true)
-    //             }
-    //         } else {
-    //             li[i].style.display = "none";
-    //         }
-    //     }
-    // };
 
     // http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
     self.filteredList = ko.computed(function(){
@@ -64,8 +49,6 @@ function AppViewModel(){
             self.locations().forEach(function(location){
                 console.log('made it')
                 location.visibility(true)
-
-                // console.log(location)
             });
             return self.locations();
         } else {
@@ -73,8 +56,6 @@ function AppViewModel(){
                 var string = location.title.toUpperCase();
                 var result = (string.search(filter) >= 0);
                 location.visibility(result)
-                console.log(location)
-                console.log(result)
                 return result;
             });
         }
@@ -99,3 +80,20 @@ function AppViewModel(){
 // Activate knockout.js
 var VM = new AppViewModel();
 ko.applyBindings(VM);
+
+
+
+
+
+
+// for(var i = 0; i < markers.length; i++){
+                //     console.log('made it')
+                //     console.log(markers[i].title)
+                //     console.log(result)
+                //     console.log(location.title)
+                //     if(markers[i].title == location.title && result == false){
+                //         markers[i].setVisible(false);
+                //     } else {
+                //         markers[i].setVisible(true);
+                //     }
+                // };

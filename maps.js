@@ -81,12 +81,13 @@ function populateInfoWindow(marker, infowindow) {
 
             if(document.getElementById((marker.title.split(" ")[0]).toString()) === null){
               infowindow.marker = marker;
+              markers.forEach(function(marker){marker.setAnimation(null)})
               marker.setAnimation(google.maps.Animation.BOUNCE);
               infowindow.setContent("<div id=" + marker.title.split(" ")[0] + ">" + responseData + '</div>');
               infowindow.open(map, marker);
               // Make sure the marker property is cleared if the infowindow is closed.
               infowindow.addListener('closeclick',function(){
-                marker.setAnimation(google.maps.Animation.DROP);
+                marker.setAnimation(google.maps.Animation.NONE);
                 infowindow.setMarker = null;
               });
             }
@@ -106,4 +107,6 @@ function populateInfoWindow(marker, infowindow) {
         }
     });
 }
+
+
 
