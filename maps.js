@@ -22,7 +22,7 @@ function initMap() {
     var largeInfowindow = new google.maps.InfoWindow();
     var bounds = new google.maps.LatLngBounds();
     // The following group uses the location array to create an array of markers on initialize.
-    for (let i = 0; i < locations.length; i++) {
+    for (var i = 0; i < locations.length; i++) {
       // Get the position from the location array.
       var position = locations[i].location;
       var title = locations[i].title;
@@ -38,7 +38,7 @@ function initMap() {
       markers.push(marker);
 
       //bind markers to each location object
-      (function(i){locations[i].marker = marker}(i));
+      (function(i){locations[i].marker = marker;}(i));
 
       // Create an onclick event to open an infowindow at each marker.
 
@@ -69,31 +69,31 @@ function populateInfoWindow(marker, infowindow) {
         success: function(response) {
             console.log(response);
             // console.log(response[2][0]);
-            var responseData = response[2][0]
+            var responseData = response[2][0];
 
 
 
-            if(document.getElementById((marker.title.split(" ")[0]).toString()) == null){
+            if(document.getElementById((marker.title.split(" ")[0]).toString()) === null){
               infowindow.marker = marker;
               marker.setAnimation(google.maps.Animation.BOUNCE);
               infowindow.setContent("<div id=" + marker.title.split(" ")[0] + ">" + responseData + '</div>');
               infowindow.open(map, marker);
               // Make sure the marker property is cleared if the infowindow is closed.
               infowindow.addListener('closeclick',function(){
-                marker.setAnimation(google.maps.Animation.DROP)
+                marker.setAnimation(google.maps.Animation.DROP);
                 infowindow.setMarker = null;
               });
             }
         },
         failure: function(response){
-            if(document.getElementById((marker.title.split(" ")[0]).toString()) == null){
+            if(document.getElementById((marker.title.split(" ")[0]).toString()) === null){
               infowindow.marker = marker;
-              marker.setAnimation(google.maps.Animation.BOUNCE)
+              marker.setAnimation(google.maps.Animation.BOUNCE);
               infowindow.setContent("<div id=" + marker.title.split(" ")[0] + ">" + "sorry no info available" + '</div>');
               infowindow.open(map, marker);
               // Make sure the marker property is cleared if the infowindow is closed.
               infowindow.addListener('closeclick',function(){
-                marker.setAnimation(google.maps.Animation.DROP)
+                marker.setAnimation(google.maps.Animation.DROP);
                 infowindow.setMarker = null;
               });
             }
@@ -106,22 +106,15 @@ $( document ).ready(function() {
     $('.listItem').click(function(){
         var largeInfowindow = new google.maps.InfoWindow();
 
-        for(let i = 0; i < markers.length; i++){
+        for(var i = 0; i < markers.length; i++){
             if(this.innerHTML == markers[i].title){
                 populateInfoWindow(markers[i], largeInfowindow);
             }
         }
 
 
-    })
+    });
 
 
 
 });
-
-
-
-
-
-
-
