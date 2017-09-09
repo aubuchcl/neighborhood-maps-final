@@ -20,7 +20,7 @@ function initMap() {
     });
     var locationMarker = function(x, marker){
         locations[x].marker = marker;
-    }
+    };
 
     var markerListener = function(marker){
 
@@ -28,7 +28,7 @@ function initMap() {
             console.log(this);
             populateInfoWindow(this, largeInfowindow);
         });
-    }
+    };
     var largeInfowindow = new google.maps.InfoWindow();
     var bounds = new google.maps.LatLngBounds();
     // The following group uses the location array to create an array of markers on initialize.
@@ -48,15 +48,9 @@ function initMap() {
       markers.push(marker);
 
       //bind markers to each location object
-      // (function(i){locations[i].marker = marker;}(i));
       locationMarker(i, marker);
 
       // Create an onclick event to open an infowindow at each marker.
-
-      // marker.addListener('click', function() {
-      //   console.log(this);
-      //   populateInfoWindow(this, largeInfowindow);
-      // });
       markerListener(marker);
       bounds.extend(markers[i].position);
     }
