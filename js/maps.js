@@ -74,7 +74,6 @@ function populateInfoWindow(marker, infowindow) {
         dataType: dt,
         success: function(response) {
             console.log(response);
-            // console.log(response[2][0]);
             var responseData = response[2][0];
 
 
@@ -93,20 +92,14 @@ function populateInfoWindow(marker, infowindow) {
             }
         },
         error: function(response){
-            if(document.getElementById((marker.title.split(" ")[0]).toString()) === null){
-              infowindow.marker = marker;
-              marker.setAnimation(google.maps.Animation.BOUNCE);
-              infowindow.setContent("<div id=" + marker.title.split(" ")[0] + ">" + "sorry no info available" + '</div>');
-              infowindow.open(map, marker);
-              // Make sure the marker property is cleared if the infowindow is closed.
-              infowindow.addListener('closeclick',function(){
-                marker.setAnimation(google.maps.Animation.DROP);
-                infowindow.setMarker = null;
-              });
-            }
+            googleError();
+
         }
     });
 }
 
 
 
+function googleError(){
+  alert('Please Reload the page');
+}
