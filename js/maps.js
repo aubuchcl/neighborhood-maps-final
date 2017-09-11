@@ -77,7 +77,7 @@ function populateInfoWindow(marker, infowindow) {
             var responseData = response[2][0];
 
 
-            if(marker.infowindow == undefined){
+            if(marker.infowindow === undefined){
               marker.infowindow = infowindow;
               infowindow.marker = marker;
               markers.forEach(function(marker){marker.setAnimation(null);});
