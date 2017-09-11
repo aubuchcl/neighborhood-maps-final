@@ -8,7 +8,6 @@ var locations = [
       {title: "Alpine Meadows, California", location: {lat: 39.1574066, lng: -120.2390835}}
 ];
 
-var largeInfowindow;
 // Create a new blank array for all the listing markers.
 var markers = [];
 function initMap() {
@@ -18,6 +17,10 @@ function initMap() {
       center: tahoe,
       zoom: 13
     });
+
+
+    largeInfowindow = new google.maps.InfoWindow();
+
     var locationMarker = function(x, marker){
         locations[x].marker = marker;
     };
