@@ -8,7 +8,7 @@ var locations = [
       {title: "Alpine Meadows, California", location: {lat: 39.1574066, lng: -120.2390835}}
 ];
 
-
+var largeInfowindow;
 // Create a new blank array for all the listing markers.
 var markers = [];
 function initMap() {
@@ -29,7 +29,7 @@ function initMap() {
             populateInfoWindow(this, largeInfowindow);
         });
     };
-    var largeInfowindow = new google.maps.InfoWindow();
+
     var bounds = new google.maps.LatLngBounds();
     // The following group uses the location array to create an array of markers on initialize.
     for (var i = 0; i < locations.length; i++) {
@@ -73,23 +73,29 @@ function populateInfoWindow(marker, infowindow) {
         url: wikiUrl,
         dataType: dt,
         success: function(response) {
-            console.log(response);
+
             var responseData = response[2][0];
+            console.log(marker.infowindow);
 
+            if(marker.infowindow == undefined){
+              marker.infowindow = infowindow
 
-
-            if(document.getElementById((marker.title.split(" ")[0]).toString()) === null){
               infowindow.marker = marker;
               markers.forEach(function(marker){marker.setAnimation(null);});
               marker.setAnimation(google.maps.Animation.BOUNCE);
               infowindow.setContent("<div id=" + marker.title.split(" ")[0] + ">" + responseData + '</div>');
               infowindow.open(map, marker);
+
+              marker.infoWindowState = 'open'
               // Make sure the marker property is cleared if the infowindow is closed.
               infowindow.addListener('closeclick',function(){
                 marker.setAnimation(google.maps.Animation.NONE);
                 infowindow.setMarker = null;
+                marker.infoWindowState = 'closed'
               });
             }
+
+
         },
         error: function(response){
             googleError();
