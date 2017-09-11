@@ -14,8 +14,6 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-               <!--  <input id="myInput" class="col-sm-2" data-bind="textInput: searchBar, event: {'keyup': filterList()}" placeholder="Search" / -->
-
                 <input id="myInput" class="col-sm-2" data-bind="textInput: searchBar, valueUpdate: 'afterkeydown'" placeholder="Search" />
                 <h3 class="col-sm-8">My Google Maps Demo</h3>
             </div>
@@ -46,8 +44,8 @@
         </script>
         <script src="js/viewmodel.js">
         </script>
-        <script async
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4h4fzbz8cd08Skr-0UZCkGyqIYRZmwWY&callback=initMap">
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4h4fzbz8cd08Skr-0UZCkGyqIYRZmwWY&callback=initMap" onerror="googleError()">
         </script>
 
     </body>
