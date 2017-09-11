@@ -75,23 +75,19 @@ function populateInfoWindow(marker, infowindow) {
         success: function(response) {
 
             var responseData = response[2][0];
-            console.log(marker.infowindow);
+
 
             if(marker.infowindow == undefined){
-              marker.infowindow = infowindow
-
+              marker.infowindow = infowindow;
               infowindow.marker = marker;
               markers.forEach(function(marker){marker.setAnimation(null);});
               marker.setAnimation(google.maps.Animation.BOUNCE);
               infowindow.setContent("<div id=" + marker.title.split(" ")[0] + ">" + responseData + '</div>');
               infowindow.open(map, marker);
-
-              marker.infoWindowState = 'open'
               // Make sure the marker property is cleared if the infowindow is closed.
               infowindow.addListener('closeclick',function(){
                 marker.setAnimation(google.maps.Animation.NONE);
                 infowindow.setMarker = null;
-                marker.infoWindowState = 'closed'
               });
             }
 
