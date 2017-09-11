@@ -13,8 +13,6 @@ function Location(title, location, count){
 function AppViewModel(){
     var self = this;
 
-    // self.visible = ko.observable(true);
-
     self.searchBar = ko.observable('');
 
     self.searchResults = ko.computed(function(){
@@ -32,41 +30,35 @@ function AppViewModel(){
     //locations initialized
     self.locations = ko.observableArray();
 
-    var i = 0
+    var i = 0;
     locations.forEach(function(location){
-        console.log(i)
         self.locations.push(new Location(location.title, location.location, i));
-        i += 1
+        i += 1;
 
     });
 
     // http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
     self.filteredList = ko.computed(function(){
         var filter = self.searchResults().toUpperCase();
-        console.log("****")
-        console.log(filter)
         if(filter === ""){
             self.locations().forEach(function(location){
-                console.log('made it')
-                location.visibility(true)
-                markers.forEach(function(marker){marker.setVisible(true)});
+                location.visibility(true);
+                markers.forEach(function(marker){marker.setVisible(true);});
             });
             return self.locations();
         } else {
             return ko.utils.arrayFilter(self.locations(), function(location){
                 var string = location.title.toUpperCase();
                 var result = (string.search(filter) >= 0);
-                location.visibility(result)
-                markers[location.count].setVisible(result)
-                // self.markerVisibility(location, result);
+                location.visibility(result);
+                markers[location.count].setVisible(result);
                 return result;
             });
         }
     });
 
     self.eventClickWindow = function() {
-        console.log("made it")
-        markers.forEach(function(marker){marker.setAnimation(null)})
+        markers.forEach(function(marker){marker.setAnimation(null);});
         var largeInfowindow = new google.maps.InfoWindow();
 
         for(var i = 0; i < markers.length; i++){
@@ -77,26 +69,10 @@ function AppViewModel(){
 
     };
 
-};
+}
 
 
 // Activate knockout.js
 var VM = new AppViewModel();
 ko.applyBindings(VM);
 
-
-
-
-
-
-// for(var i = 0; i < markers.length; i++){
-                //     console.log('made it')
-                //     console.log(markers[i].title)
-                //     console.log(result)
-                //     console.log(location.title)
-                //     if(markers[i].title == location.title && result == false){
-                //         markers[i].setVisible(false);
-                //     } else {
-                //         markers[i].setVisible(true);
-                //     }
-                // };

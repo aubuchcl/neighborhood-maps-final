@@ -81,7 +81,7 @@ function populateInfoWindow(marker, infowindow) {
 
             if(document.getElementById((marker.title.split(" ")[0]).toString()) === null){
               infowindow.marker = marker;
-              markers.forEach(function(marker){marker.setAnimation(null)})
+              markers.forEach(function(marker){marker.setAnimation(null);});
               marker.setAnimation(google.maps.Animation.BOUNCE);
               infowindow.setContent("<div id=" + marker.title.split(" ")[0] + ">" + responseData + '</div>');
               infowindow.open(map, marker);
