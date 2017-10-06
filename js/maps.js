@@ -28,7 +28,7 @@ function initMap() {
     var markerListener = function(marker){
 
       marker.addListener('click', function() {
-          console.log(this);
+          // console.log(this);
           populateInfoWindow(this, largeInfowindow);
       });
     };
@@ -77,15 +77,22 @@ function populateInfoWindow(marker, infowindow) {
         dataType: dt,
         success: function(response) {
 
+
             var responseData = response[2][0];
 
 
-            if(marker.infowindow === undefined){
+            if(!marker.infowindow){
               marker.infowindow = infowindow;
               infowindow.marker = marker;
-              //markers.forEach(function(marker){marker.setAnimation(null);});
+              markers.forEach(function(allMarkers){
+                if(allMarkers == marker){console.log("once")}
+                else{
+                allMarkers.setAnimation(null);
+                allMarkers.infowindow = undefined;}
+              });
               marker.setAnimation(google.maps.Animation.BOUNCE);
-              infowindow.setContent("<div id=" + marker.title.split(" ")[0] + ">" + responseData + '</div>');
+              infowindow.setContent(
+                "<div class='container'><div>" + responseData + '</div></div>');
               infowindow.open(map, marker);
               // Make sure the marker property is cleared if the infowindow is closed.
               infowindow.addListener('closeclick',function(){
