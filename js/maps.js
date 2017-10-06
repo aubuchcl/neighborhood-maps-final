@@ -27,10 +27,10 @@ function initMap() {
 
     var markerListener = function(marker){
 
-        marker.addListener('click', function() {
-            console.log(this);
-            populateInfoWindow(this, largeInfowindow);
-        });
+      marker.addListener('click', function() {
+          console.log(this);
+          populateInfoWindow(this, largeInfowindow);
+      });
     };
 
     var bounds = new google.maps.LatLngBounds();
@@ -83,14 +83,14 @@ function populateInfoWindow(marker, infowindow) {
             if(marker.infowindow === undefined){
               marker.infowindow = infowindow;
               infowindow.marker = marker;
-              markers.forEach(function(marker){marker.setAnimation(null);});
+              //markers.forEach(function(marker){marker.setAnimation(null);});
               marker.setAnimation(google.maps.Animation.BOUNCE);
               infowindow.setContent("<div id=" + marker.title.split(" ")[0] + ">" + responseData + '</div>');
               infowindow.open(map, marker);
               // Make sure the marker property is cleared if the infowindow is closed.
               infowindow.addListener('closeclick',function(){
                 marker.setAnimation(google.maps.Animation.NONE);
-                infowindow.setMarker = null;
+                marker.infowindow = undefined;
               });
             }
 

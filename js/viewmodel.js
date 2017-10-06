@@ -58,7 +58,7 @@ function AppViewModel(){
     });
 
     self.eventClickWindow = function() {
-        markers.forEach(function(marker){marker.setAnimation(null);});
+        //markers.forEach(function(marker){marker.setAnimation(null);});
         largeInfowindow = new google.maps.InfoWindow();
 
 
